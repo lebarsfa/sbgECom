@@ -64,12 +64,23 @@
 SBG_DEPRECATED_TYPEDEF(typedef unsigned char			uint8);		//  8 bits
 SBG_DEPRECATED_TYPEDEF(typedef unsigned short			uint16);	// 16 bits
 SBG_DEPRECATED_TYPEDEF(typedef unsigned int				uint32);	// 32 bits
-SBG_DEPRECATED_TYPEDEF(typedef unsigned long long int	uint64);	// 64 bits
+//SBG_DEPRECATED_TYPEDEF(typedef unsigned long long int	uint64);	// 64 bits
 
 SBG_DEPRECATED_TYPEDEF(typedef signed char				int8);		//  8 bits
 SBG_DEPRECATED_TYPEDEF(typedef signed short				int16);		// 16 bits
 SBG_DEPRECATED_TYPEDEF(typedef signed int				int32);		// 32 bits
-SBG_DEPRECATED_TYPEDEF(typedef signed long long int		int64);		// 64 bits
+//SBG_DEPRECATED_TYPEDEF(typedef signed long long int		int64);		// 64 bits
+
+// Previous definitions were conflicting with some versions of OpenCV on Linux, 
+// so the same definitions as OpenCV are copied here...
+#if defined _MSC_VER || defined __BORLANDC__
+SBG_DEPRECATED_TYPEDEF(typedef __int64 int64);
+SBG_DEPRECATED_TYPEDEF(typedef unsigned __int64 uint64);
+#else
+#include <inttypes.h>
+SBG_DEPRECATED_TYPEDEF(typedef int64_t int64);
+SBG_DEPRECATED_TYPEDEF(typedef uint64_t uint64);
+#endif
 
 
 //----------------------------------------------------------------------//
